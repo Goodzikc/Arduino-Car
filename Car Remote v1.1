@@ -1,0 +1,78 @@
+#include <IRremote.h>// installs code for remote 
+
+void Move_forward() {
+  digitalWrite(12, HIGH);
+  analogWrite(10, 255);
+  digitalWrite(13, LOW);
+  analogWrite(11, 255);
+}
+
+void Stop() {
+  digitalWrite(12, HIGH);
+  analogWrite(10, 0);
+  digitalWrite(13, LOW);
+  analogWrite(11, 0);
+}
+
+void Move_backward() {
+  digitalWrite(12, LOW);
+  analogWrite(10, 255);
+  digitalWrite(13, HIGH);
+  analogWrite(11, 255);
+}
+
+void Turn_Left() {
+  digitalWrite(12, LOW);
+  analogWrite(10, 255);
+  digitalWrite(13, LOW);
+  analogWrite(11, 255);
+}
+
+void Turn_Right() {
+  digitalWrite(12, HIGH);
+  analogWrite(10, 255);
+  digitalWrite(13, HIGH);
+  analogWrite(11, 255);
+}
+
+const int RECV_PIN = 7;
+IRrecv irrecv(RECV_PIN);
+decode_results results;
+
+void setup(){
+  irrecv.enableIRIn();
+  irrecv.blink13(true);
+  pinMode(12, OUTPUT);
+  pinMode(13, OUTPUT);
+}
+void loop(){
+    if (irrecv.decode(&results)){  
+//If a certain button is pressed, then a coded result will happen
+    }
+
+switch(results.value){    //  When button 1 is pressed
+          case 0xFF38C7: //Keypad button "1" code
+          Stop();  // robot car will move forward
+         
+    }
+switch(results.value){    //  When button 2 is pressed
+          case 0xFF18E7: //Keypad button "2" code
+          Move_forward();
+          delay(2000);
+    }     
+switch(results.value){    //  When button 2 is pressed
+          case 0xFF4AB5: //Keypad button "2" code
+          Move_backward();
+          delay(2000);
+    }
+switch(results.value){    //  When button 2 is pressed
+          case 0xFF10EF:
+          Turn_Left();
+          delay(2000);
+    }    
+switch(results.value){    //  When button 2 is pressed
+          case 0xFF5AA5: //Keypad button "2" code
+          Turn_Right();
+          delay(2000);
+    }
+}
