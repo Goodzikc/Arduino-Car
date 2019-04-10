@@ -1,0 +1,81 @@
+
+void Move_Backward() {
+  digitalWrite(12, HIGH);
+  analogWrite(10, 255);
+  digitalWrite(13, LOW);
+  analogWrite(11, 255);
+  Serial.println("Move_forward");
+}
+
+void Stop() {
+  digitalWrite(12, HIGH);
+  analogWrite(10, 0);
+  digitalWrite(13, LOW);
+  analogWrite(11, 0);
+  Serial.println("Stop");
+}
+
+void Move_Forward() {
+  digitalWrite(12, LOW);
+  analogWrite(10, 255);
+  digitalWrite(13, HIGH);
+  analogWrite(11, 255);
+  Serial.println("Move_backward");
+}
+
+
+void Turn_Right() {
+  digitalWrite(12, LOW);
+  analogWrite(10, 255);
+  digitalWrite(13, LOW);
+  analogWrite(11, 255);
+  Serial.println("Turn_left");
+}
+
+void Turn_Left() {
+  digitalWrite(12, HIGH);
+  analogWrite(10, 255);
+  digitalWrite(13, HIGH);
+  analogWrite(11, 255);
+  Serial.println("Turn_Right");
+}
+
+
+void setup(){
+  pinMode(12, OUTPUT);
+  pinMode(13, OUTPUT);
+  
+}
+void loop(){
+    Move_Forward();
+    delay(500);
+    Turn_Right();
+    delay(550);
+    Move_Forward();
+    delay(1700);
+    Turn_Left();
+    delay(500);
+    Move_Forward();
+    delay(1600);
+    Turn_Left();
+    delay(550);
+    Move_Forward();
+    delay(500);
+    Turn_Left();
+    delay(600);
+    Move_Forward();
+    delay(500);
+    Turn_Right();
+    delay(500);
+    Move_Forward();
+    delay(500);
+    Turn_Right();
+    delay(600);
+    Move_Forward();
+    delay(1450);
+    Turn_Right();
+    delay(650);
+    Stop();
+    delay(100000);
+    
+}
