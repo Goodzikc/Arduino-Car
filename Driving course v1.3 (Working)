@@ -4,7 +4,7 @@ void Move_Backward() {
   analogWrite(10, 255);
   digitalWrite(13, LOW);
   analogWrite(11, 255);
-  Serial.println("Move_forward");
+  Serial.println("Move_Backward")
 }
 
 void Stop() {
@@ -20,7 +20,7 @@ void Move_Forward() {
   analogWrite(10, 255);
   digitalWrite(13, HIGH);
   analogWrite(11, 255);
-  Serial.println("Move_backward");
+  Serial.println("Move_Forward
 }
 
 
@@ -29,7 +29,7 @@ void Turn_Right() {
   analogWrite(10, 255);
   digitalWrite(13, LOW);
   analogWrite(11, 255);
-  Serial.println("Turn_left");
+  Serial.println("Turn_Right
 }
 
 void Turn_Left() {
@@ -37,7 +37,7 @@ void Turn_Left() {
   analogWrite(10, 255);
   digitalWrite(13, HIGH);
   analogWrite(11, 255);
-  Serial.println("Turn_Right");
+  Serial.println("Turn_Left
 }
 
 
