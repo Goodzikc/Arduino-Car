@@ -1,0 +1,80 @@
+void Move_Forward() {
+  digitalWrite(12, LOW);
+  analogWrite(10, 255);
+  digitalWrite(13, HIGH);
+  analogWrite(11, 255);
+}
+
+void Move_Backward() {
+  digitalWrite(12, HIGH);
+  analogWrite(10, 255);
+  digitalWrite(13, LOW);
+  analogWrite(11, 255);
+}
+
+void Turn_Right() {
+  digitalWrite(12, LOW);
+  analogWrite(10, 255);
+  digitalWrite(13, LOW);
+  analogWrite(11, 255);
+}
+
+void Turn_Left() {
+  digitalWrite(12, HIGH);
+  analogWrite(10, 255);
+  digitalWrite(13, HIGH);
+  analogWrite(11, 255);
+}
+
+int Sonic_Time_out = 3000;
+
+long Sonic_Timing(){
+  digitalWrite(7, LOW);
+  delayMicroseconds(2);
+  digitalWrite(7, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(7, LOW);
+  long duration = pulseIn(8,HIGH,Sonic_Time_out);
+  if ( duration == 0 ){
+    duration = Sonic_Time_out;
+    digitalWrite(0, HIGH);
+    delay(25);
+    digitalWrite(0 ,LOW);
+    delay(225);
+  }
+  return duration;
+}
+
+void stop() {
+  digitalWrite(12, HIGH);
+  analogWrite(10, 0);
+  digitalWrite(13, LOW);
+  analogWrite(11, 0);
+  delay(500);
+}
+
+void setup()
+{
+  pinMode(12, OUTPUT);
+  pinMode(13, OUTPUT);
+  pinMode(7, OUTPUT);
+  pinMode(8, INPUT);
+  pinMode(0, OUTPUT);
+}
+
+
+void loop()
+{
+  if (Sonic_Timing()/29/2 <= 20) {
+    stop();
+    delay(500);
+    Turn_Right();
+    delay(850);
+
+  } else {
+    Move_Forward();
+    delay(1000);
+
+  }
+
+}
