@@ -1,0 +1,72 @@
+void Move_Forward() {
+  digitalWrite(12, HIGH);
+  analogWrite(10, 255);
+  digitalWrite(13, LOW);
+  analogWrite(11, 255);
+  Serial.println("Move_Forward");
+}
+
+void Move_Backward() {
+  digitalWrite(12, LOW);
+  analogWrite(10, 100);
+  digitalWrite(13, HIGH);
+  analogWrite(11, 100);
+  Serial.println("Move_Backward");
+}
+
+void Turn_Right() {
+  digitalWrite(12, HIGH);
+  analogWrite(10, 255);
+  digitalWrite(13, HIGH);
+  analogWrite(11, 255);
+  Serial.println("Turn_Right");
+}
+
+void Turn_Left() {
+  digitalWrite(12, LOW);
+  analogWrite(10, 255);
+  digitalWrite(13, LOW);
+  analogWrite(11, 255);
+  Serial.println("Turn_Left");
+}
+
+void stop() {
+  digitalWrite(12, LOW);
+  analogWrite(10, 0);
+  digitalWrite(13, HIGH);
+  analogWrite(11, 0);
+  delay(500);
+  Serial.println("Stop");
+}
+
+
+void setup()
+{
+  pinMode(12, OUTPUT);
+  pinMode(13, OUTPUT);
+  Serial.begin(9600);
+}
+void loop()
+{
+  Serial.println(analogRead(A3));
+  Serial.print("");
+  Serial.println(analogRead(A5));
+  Serial.print("");
+  Serial.println(analogRead(A4));
+  Serial.print("");
+  if (analogRead(A5) < 100 && (analogRead(A4) > 100 && analogRead(A3) < 100)) {
+    Move_Forward();
+  } else if (analogRead(A5) < 100 && (analogRead(A4) < 100 && analogRead(A3) > 100)) {
+    Turn_Right();
+  } else if (analogRead(A5) > 100 && (analogRead(A4) < 100 && analogRead(A3) < 100)) {
+    Turn_Left();
+  } else if (analogRead(A5) < 100 && (analogRead(A4) > 100 && analogRead(A3) > 100)) {
+    Turn_Right();
+  } else if (analogRead(A5) > 100 && (analogRead(A4) > 100 && analogRead(A3) < 100)) {
+    Turn_Left();
+  } else if (analogRead(A5) < 100 && (analogRead(A4) < 100 && analogRead(A3) < 100)) {
+    Move_Backward();
+  }
+  
+  
+}
